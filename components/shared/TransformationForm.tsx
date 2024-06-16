@@ -9,6 +9,7 @@ import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } fro
 import { InsufficientCreditsModal } from "./InsufficientCreditModal"
 import { CustomField } from "./CustomField"
 import { useEffect, useState , useTransition} from "react"
+import { Transformations } from "@/types"
 import { Button } from "@/components/ui/button"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import TransformedImage from "./TransformedImage"
