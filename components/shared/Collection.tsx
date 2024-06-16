@@ -14,6 +14,7 @@ import {
 import { transformationTypes } from "@/constants";
 import { IImage } from "@/lib/database/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
+import { TransformationTypeKey } from "@/types";
 
 import { Button } from "../ui/button";
 
