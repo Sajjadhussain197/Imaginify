@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import MediaUploader from "./MediaUploader"
 import { z } from "zod"
-
+import { TransformationFormProps } from "@/types"
  import { debounce, deepMergeObjects } from "@/lib/utils"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from '@/constants'
 import { InsufficientCreditsModal } from "./InsufficientCreditModal"
