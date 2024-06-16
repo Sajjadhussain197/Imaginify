@@ -11,7 +11,7 @@ import { SearchParamProps } from "@/types";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
 const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
-  const { userId } = auth();
+ 
 
   const { userId } = auth();
   const image = await getImageById(id);
