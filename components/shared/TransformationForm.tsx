@@ -3,10 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import MediaUploader from "./MediaUploader"
 import { z } from "zod"
+
  import { debounce, deepMergeObjects } from "@/lib/utils"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from '@/constants'
+import { InsufficientCreditsModal } from "./InsufficientCreditModal"
 import { CustomField } from "./CustomField"
-import { useState , useTransition} from "react"
+import { useEffect, useState , useTransition} from "react"
 import { Button } from "@/components/ui/button"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import TransformedImage from "./TransformedImage"
@@ -35,6 +37,7 @@ import { updateCredits } from "@/lib/actions/user.actions"
 import { getCldImageUrl } from "next-cloudinary"
 import path from "path"
 import { useRouter } from "next/navigation"
+
 
 export const formSchema = z.object({
   title: z.string(),
@@ -184,10 +187,19 @@ startTransition(async ()=>{
   updateCredits(userId, -1)
 })
 }
+
+useEffect(()=>{
+  if(image&& (type === 'resotre' || type === 'removeBackground'))
+    {
+      setNewTransformation(transformationType.config)
+    }
+
+},[image,transformationType.config,type])
   return (
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)}
      className="space-y-8">
+      {creditBalance < Math.abs(creditFee)&& <InsufficientCreditsModal /> }
    <CustomField 
     control={form.control}
       name="title"
@@ -239,7 +251,10 @@ startTransition(async ()=>{
         formLabel={type=== 'remove'? "Object to remove": 
           "Object to recolor"}
           className="w-full"
-          render={(({field})=> <Input
+          render={
+           
+           
+            ({field})=>( <Input
             value={field.value}
             className="field-input"
             onChange={(e)=>onInputChangeHandler(
@@ -247,7 +262,12 @@ startTransition(async ()=>{
               type,
               e.target.value, field.onChange
             )}
-          />)}             
+          />)
+        
+        
+
+
+        }             
         /> }
 
           {
