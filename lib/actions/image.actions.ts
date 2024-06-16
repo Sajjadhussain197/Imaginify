@@ -6,7 +6,7 @@ import { handleError } from "../utils";
 import User from "../database/models/user.model";
 import Image from "../database/models/image.model";
 import { redirect } from "next/navigation";
-
+import { AddImageParams, UpdateImageParams } from "@/types";
 import { v2 as cloudinary } from 'cloudinary'
 
 const populateUser = (query: any) => query.populate({

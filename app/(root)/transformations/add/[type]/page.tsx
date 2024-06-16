@@ -10,7 +10,7 @@ const AddTransformationTypePage = async ({params :{type}}: SearchParamProps) => 
 
  const transformation= transformationTypes[type];
 
-  const { userId }:{type: string} = auth();
+  const { userId }= auth();
 
 
 if(!userId) return null;
