@@ -190,7 +190,7 @@ startTransition(async ()=>{
 }
 
 useEffect(()=>{
-  if(image&& (type === 'resotre' || type === 'removeBackground'))
+  if(image&& (type === 'restore' || type === 'removeBackground'))
     {
       setNewTransformation(transformationType.config)
     }
